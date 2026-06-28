@@ -1,0 +1,12 @@
+services:
+    sidestore-vpn:
+        image: ghcr.io/xddxdd/sidestore-vpn:tailscale
+        cap_add:
+            - NET_ADMIN
+        devices:
+            - /dev/net/tun:/dev/net/tun
+        volumes:
+            - ./state:/var/lib/tailscale
+        environment:
+            - TS_AUTHKEY=tskey-auth-~~~~~
+            - TS_HOSTNAME=sidestore-vpn
