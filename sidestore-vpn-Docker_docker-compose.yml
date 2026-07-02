@@ -1,6 +1,8 @@
 services:
     sidestore-vpn:
         image: ghcr.io/xddxdd/sidestore-vpn:tailscale
+        container_name: sidestore-tailscale
+        restart: always
         cap_add:
             - NET_ADMIN
         devices:
