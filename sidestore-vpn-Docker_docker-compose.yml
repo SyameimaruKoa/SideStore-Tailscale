@@ -11,5 +11,5 @@ services:
             - ./state:/var/lib/tailscale
         environment:
             - TS_AUTHKEY=tskey-auth-~~~~~
-            - TS_HOSTNAME=sidestore-vpn
+            - TS_HOSTNAME=sidestore
             - TS_STATE_DIR=/var/lib/tailscale # ノードを永続化
