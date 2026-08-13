@@ -1,0 +1,20 @@
+services:
+    sidestore-vpn:
+        image: ghcr.io/xddxdd/sidestore-vpn:tailscale
+        container_name: sidestore-tailscale
+        hostname: sidestore
+        environment:
+            - TS_AUTHKEY=tskey-auth-~~~~~
+            - TS_HOSTNAME=sidestore
+            - TS_STATE_DIR=/var/lib/tailscale
+        volumes:
+            - ./tailscale-state:/var/lib/tailscale
+        cap_add:
+            - NET_ADMIN
+        devices:
+            - /dev/net/tun:/dev/net/tun
+        sysctls:
+            - net.ipv6.conf.all.disable_ipv6=0
+            - net.ipv6.conf.all.forwarding=1
+            - net.ipv4.ip_forward=1
+        restart: unless-stopped
