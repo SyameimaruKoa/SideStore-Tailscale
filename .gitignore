@@ -1,0 +1,3 @@
+# Local Tailscale credentials and private node state
+.env
+tailscale-state/
