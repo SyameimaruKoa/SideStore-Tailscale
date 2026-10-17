@@ -1,18 +1,24 @@
 services:
     sidestore-vpn:
-        image: ghcr.io/xddxdd/sidestore-vpn:tailscale
+        build:
+            context: https://github.com/shiqi917/sidestore-vpn-tailscale.git#main
+        image: sidestore-vpn-tailscale:local
         container_name: sidestore-tailscale
         hostname: sidestore
         environment:
-            - TS_AUTHKEY=tskey-auth-~~~~~
+            - TS_AUTHKEY=${TS_AUTHKEY:-}
             - TS_HOSTNAME=sidestore
             - TS_STATE_DIR=/var/lib/tailscale
+            - TS_TAILSCALED_EXTRA_ARGS=--verbose=-1 --port=41642
+            - TS_EXTRA_ARGS=--reset --snat-subnet-routes=false
         volumes:
             - ./tailscale-state:/var/lib/tailscale
         cap_add:
             - NET_ADMIN
         devices:
             - /dev/net/tun:/dev/net/tun
+        ports:
+            - "41642:41642/udp"
         sysctls:
             - net.ipv6.conf.all.disable_ipv6=0
             - net.ipv6.conf.all.forwarding=1
