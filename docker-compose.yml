@@ -1,7 +1,7 @@
 services:
     sidestore-vpn:
         build:
-            context: https://github.com/shiqi917/sidestore-vpn-tailscale.git#main
+            context: https://github.com/shiqi917/sidestore-vpn-tailscale.git
         image: sidestore-vpn-tailscale:local
         container_name: sidestore-tailscale
         hostname: sidestore
